@@ -166,7 +166,6 @@ RegisterNetEvent('plist:requestGradeColors', function()
     local src = source
     local grades = MySQL.query.await('SELECT * FROM police_grade_colors', {})
 
-    print("[PoliceMenu] Fetched grades count:", #grades) -- should be > 0
     -- send the table directly; QBCore will handle serialization
     TriggerClientEvent('plist:updateGrades', src, grades)
 end)
@@ -175,7 +174,6 @@ end)
 RegisterNetEvent('QBCore:Server:OnJobUpdate', function(newJob)
     local src = source
     local Player = QBCore.Functions.GetPlayer(source)
-	print("raper1253")
 	
 
     -- Always refresh the boss menu list for *all* bosses
@@ -183,9 +181,7 @@ RegisterNetEvent('QBCore:Server:OnJobUpdate', function(newJob)
 
     for _, playerId in ipairs(QBCore.Functions.GetPlayers()) do
         local target = QBCore.Functions.GetPlayer(playerId)
-		print("rap")
         if target and target.PlayerData.job and target.PlayerData.job.name == "police" then
-			print("raper")
             TriggerClientEvent("plist:sendPlayerList", target.PlayerData.source, policeList)
         end
     end
