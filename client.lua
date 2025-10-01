@@ -126,7 +126,6 @@ end)
 
 RegisterNUICallback("deleteGrade", function(data, cb)
     if data.min and data.max then
-        print("[PoliceMenu] Deleting grade:", data.min, data.max) -- debug
         TriggerServerEvent("plist:deleteGrade", data)
     end
     cb("ok")
