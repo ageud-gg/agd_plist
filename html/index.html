@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Police Menu</title>
+    <link rel="stylesheet" href="style.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div id="menu">
+        <div class="sidebar">
+            <button class="tab-btn" data-tab="settings">Settings</button>
+            <button class="tab-btn boss" data-tab="bossPage" style="display:none;">Boss Options</button>
+            <label class="pill" id="togglelist">
+                <input type="checkbox" id="playerListCheckbox">
+                <span>Enable Active Police List</span>
+            </label>
+        </div>
+
+        <div class="content">
+            <!-- Settings Tab -->
+            <div class="tab" id="settings">
+                <h2>Settings</h2>
+                <div class="form-group">
+                    <input type="text" id="callsignInput" placeholder="Enter Callsign">
+                    <button id="saveCallsign">Save</button>
+                </div>
+				<div class="form-group">
+					<label for="opacitySlider">Opacity</label>
+					<input type="range" id="opacitySlider" min="10" max="100" step="5">
+				</div>
+                <div class="form-group">
+                    <label for="sizeSlider">Size</label>
+                    <input type="range" id="sizeSlider" min="0.5" max="2.0" step="0.1">
+                </div>
+				<div class="form-group">
+					<button id="resetListPosBtn">Reset List Position</button>
+				</div>
+            </div>
+
+            <!-- Boss Tab -->
+			<div id="bossPage" class="tab-content">
+				<h2>Grade Colors</h2>
+
+				<!-- Saved grades -->
+				<div id="gradeColorsList"></div>
+
+				<!-- Live preview -->
+				<div id="gradePreview"></div>
+
+				<div id="addGradeColor" class="form-group horizontal">
+					<input type="number" id="minGrade" placeholder="Min Grade">
+					<input type="number" id="maxGrade" placeholder="Max Grade">
+					<input type="text" id="gradeName" placeholder="Grade Name">
+					<input type="color" id="color">
+					<button id="addGradeBtn">Add / Update</button>
+				</div>
+			</div>
+        </div>
+    </div>
+	
+	<div id="playerListOverlay" class="overlay-window">
+		<div id="playerListHeader">Active Police</div>
+		<div id="playerListContent"></div>
+	</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
