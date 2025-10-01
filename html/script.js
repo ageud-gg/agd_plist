@@ -46,17 +46,35 @@ window.addEventListener('message', (event) => {
         const opacity = event.data.opacity || 100;
         const size = event.data.size || 1;
         applyOverlaySettings(opacity, size);
-
+		
+		fetchGrades();
+		fetchPlayerList();
+		
         if (msg.isBoss) {
 			fetchGrades(); // must run here
 		}
         if (playerOverlayCheckbox.checked) fetchPlayerList();
     }
 
-		if (msg.action === "updateGrades") {
-			gradeColors = msg.grades || [];
-			renderGradeColors();
-		}
+	if (msg.action === "updateGrades") {
+		gradeColors = msg.grades || [];
+		renderGradeColors();
+	}
+	
+	if (event.data.action === "refreshPlayerList") {
+		const players = event.data.players;
+		console.log("lqe");
+		players.forEach(p => {
+			const gradeObj = gradeColors.find(g => {
+				const min = Math.min(g.grade_min, g.grade_max);
+				const max = Math.max(g.grade_min, g.grade_max);
+				return p.gradeNum >= min && p.gradeNum <= max;
+			});
+			p.gradeName = gradeObj ? gradeObj.grade_name : "Unknown";
+		});
+
+		renderPlayerList(players);
+    }
 
     if (msg.action === "updatePlayerList") {
         renderPlayerList(msg.players || []);

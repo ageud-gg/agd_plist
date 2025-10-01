@@ -171,6 +171,25 @@ RegisterNetEvent('plist:requestGradeColors', function()
     TriggerClientEvent('plist:updateGrades', src, grades)
 end)
 
+--When a player changes job
+RegisterNetEvent('QBCore:Server:OnJobUpdate', function(newJob)
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(source)
+	print("raper1253")
+	
+
+    -- Always refresh the boss menu list for *all* bosses
+    local policeList = GetActivePolicePlayers()
+
+    for _, playerId in ipairs(QBCore.Functions.GetPlayers()) do
+        local target = QBCore.Functions.GetPlayer(playerId)
+		print("rap")
+        if target and target.PlayerData.job and target.PlayerData.job.name == "police" then
+			print("raper")
+            TriggerClientEvent("plist:sendPlayerList", target.PlayerData.source, policeList)
+        end
+    end
+end)
 
 -- ========================
 -- Player List Management
