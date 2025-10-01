@@ -10,3 +10,5 @@ Features:
 
 
 ##### Disclaimer: Code was not tested in a public server, i will update the readme asap.
+
+Protected by GNU General Public License V3
