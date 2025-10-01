@@ -40,6 +40,14 @@ RegisterNetEvent('plist:openMenu', function(data)
     })
 end)
 
+RegisterNetEvent("plist:sendPlayerList", function(players)
+    SendNUIMessage({
+        action = "refreshPlayerList",
+        players = players
+    })
+end)
+
+
 RegisterNetEvent('plist:updatePlayerList', function(players)
     SendNUIMessage({
         action = "updatePlayerList",
