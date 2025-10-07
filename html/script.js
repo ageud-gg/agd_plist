@@ -63,6 +63,7 @@ window.addEventListener('message', (event) => {
 	
 	if (event.data.action === "refreshPlayerList") {
 		const players = event.data.players;
+		console.log("lqe");
 		players.forEach(p => {
 			const gradeObj = gradeColors.find(g => {
 				const min = Math.min(g.grade_min, g.grade_max);
@@ -127,6 +128,8 @@ function renderPlayerList(players) {
 
 		p.gradeName = gradeObj ? gradeObj.grade_name : "Unknown";
 	});
+
+	players.sort((a, b) => b.gradeNum - a.gradeNum);
 
     // Group players by gradeName
     const categories = {};
